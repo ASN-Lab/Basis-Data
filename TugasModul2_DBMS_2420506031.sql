@@ -1,80 +1,114 @@
--- MariaDB dump 10.19  Distrib 10.4.32-MariaDB, for Win64 (AMD64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: akademik
--- ------------------------------------------------------
--- Server version	10.4.32-MariaDB
+-- Host: 127.0.0.1
+-- Generation Time: Feb 20, 2025 at 09:56 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Database: `akademik`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `dosen`
 --
 
-DROP TABLE IF EXISTS `dosen`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `dosen` (
-  `ID_dosen` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_dosen` int(11) NOT NULL,
   `Nama` varchar(100) NOT NULL,
   `NIP` varchar(20) NOT NULL,
-  `jabatan` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`ID_dosen`),
-  UNIQUE KEY `NIP` (`NIP`)
+  `jabatan` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `dosen`
+-- Table structure for table `mahasiswa`
 --
 
-LOCK TABLES `dosen` WRITE;
-/*!40000 ALTER TABLE `dosen` DISABLE KEYS */;
-/*!40000 ALTER TABLE `dosen` ENABLE KEYS */;
-UNLOCK TABLES;
+CREATE TABLE `mahasiswa` (
+  `ID_mahasiswa` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `NPM` varchar(20) NOT NULL,
+  `jurusan` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `matakuliah`
 --
 
-DROP TABLE IF EXISTS `matakuliah`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `matakuliah` (
-  `ID_matakuliah` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_matakuliah` int(11) NOT NULL,
   `Kode_matakuliah` varchar(10) NOT NULL,
   `Nama_matakuliah` varchar(100) NOT NULL,
   `sks` int(11) NOT NULL,
-  `semester` int(11) NOT NULL,
-  PRIMARY KEY (`ID_matakuliah`),
-  UNIQUE KEY `Kode_matakuliah` (`Kode_matakuliah`)
+  `semester` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `matakuliah`
+-- Indexes for dumped tables
 --
 
-LOCK TABLES `matakuliah` WRITE;
-/*!40000 ALTER TABLE `matakuliah` DISABLE KEYS */;
-/*!40000 ALTER TABLE `matakuliah` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Indexes for table `dosen`
+--
+ALTER TABLE `dosen`
+  ADD PRIMARY KEY (`ID_dosen`),
+  ADD UNIQUE KEY `NIP` (`NIP`);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  ADD PRIMARY KEY (`ID_mahasiswa`),
+  ADD UNIQUE KEY `NPM` (`NPM`);
+
+--
+-- Indexes for table `matakuliah`
+--
+ALTER TABLE `matakuliah`
+  ADD PRIMARY KEY (`ID_matakuliah`),
+  ADD UNIQUE KEY `Kode_matakuliah` (`Kode_matakuliah`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `dosen`
+--
+ALTER TABLE `dosen`
+  MODIFY `ID_dosen` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `mahasiswa`
+--
+ALTER TABLE `mahasiswa`
+  MODIFY `ID_mahasiswa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `matakuliah`
+--
+ALTER TABLE `matakuliah`
+  MODIFY `ID_matakuliah` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2025-02-20 15:41:34
