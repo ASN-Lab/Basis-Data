@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2025 at 09:56 AM
+-- Generation Time: Feb 26, 2025 at 10:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -28,10 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `dosen` (
-  `ID_dosen` int(11) NOT NULL,
+  `DosenID` int(11) NOT NULL,
   `Nama` varchar(100) NOT NULL,
-  `NIP` varchar(20) NOT NULL,
-  `jabatan` varchar(50) DEFAULT NULL
+  `Email` varchar(100) NOT NULL,
+  `Telepon` varchar(15) DEFAULT NULL,
+  `Alamat` text DEFAULT NULL,
+  `Gelar` varchar(50) DEFAULT NULL,
+  `TanggalBergabung` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,10 +44,14 @@ CREATE TABLE `dosen` (
 --
 
 CREATE TABLE `mahasiswa` (
-  `ID_mahasiswa` int(11) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `NPM` varchar(20) NOT NULL,
-  `jurusan` varchar(100) DEFAULT NULL
+  `MahasiswaID` int(11) NOT NULL,
+  `Nama` varchar(100) NOT NULL,
+  `NIM` varchar(20) NOT NULL,
+  `Email` varchar(100) NOT NULL,
+  `Telepon` varchar(15) DEFAULT NULL,
+  `Alamat` text DEFAULT NULL,
+  `TanggalLahir` date DEFAULT NULL,
+  `TanggalMasuk` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -54,12 +61,11 @@ CREATE TABLE `mahasiswa` (
 --
 
 CREATE TABLE `matakuliah` (
-  `ID_matakuliah` int(11) NOT NULL,
-  `Kode_matakuliah` varchar(10) NOT NULL,
-  `Nama_matakuliah` varchar(100) NOT NULL,
-  `sks` int(11) NOT NULL,
-  `semester` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `MataKuliahID` int(11) NOT NULL,
+  `Nama` varchar(100) NOT NULL,
+  `SKS` tinyint(4) NOT NULL,
+  `DosenID` int(11) DEFAULT NULL
+) ;
 
 --
 -- Indexes for dumped tables
@@ -69,22 +75,23 @@ CREATE TABLE `matakuliah` (
 -- Indexes for table `dosen`
 --
 ALTER TABLE `dosen`
-  ADD PRIMARY KEY (`ID_dosen`),
-  ADD UNIQUE KEY `NIP` (`NIP`);
+  ADD PRIMARY KEY (`DosenID`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`ID_mahasiswa`),
-  ADD UNIQUE KEY `NPM` (`NPM`);
+  ADD PRIMARY KEY (`MahasiswaID`),
+  ADD UNIQUE KEY `NIM` (`NIM`),
+  ADD UNIQUE KEY `Email` (`Email`);
 
 --
 -- Indexes for table `matakuliah`
 --
 ALTER TABLE `matakuliah`
-  ADD PRIMARY KEY (`ID_matakuliah`),
-  ADD UNIQUE KEY `Kode_matakuliah` (`Kode_matakuliah`);
+  ADD PRIMARY KEY (`MataKuliahID`),
+  ADD KEY `fk_dosen` (`DosenID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -94,19 +101,30 @@ ALTER TABLE `matakuliah`
 -- AUTO_INCREMENT for table `dosen`
 --
 ALTER TABLE `dosen`
-  MODIFY `ID_dosen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `DosenID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `mahasiswa`
 --
 ALTER TABLE `mahasiswa`
-  MODIFY `ID_mahasiswa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MahasiswaID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `matakuliah`
 --
 ALTER TABLE `matakuliah`
-  MODIFY `ID_matakuliah` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `MataKuliahID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `matakuliah`
+--
+ALTER TABLE `matakuliah`
+  ADD CONSTRAINT `fk_dosen` FOREIGN KEY (`DosenID`) REFERENCES `dosen` (`DosenID`),
+  ADD CONSTRAINT `matakuliah_ibfk_1` FOREIGN KEY (`DosenID`) REFERENCES `dosen` (`DosenID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
