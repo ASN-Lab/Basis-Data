@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 01, 2025 at 05:49 PM
+-- Generation Time: Mar 03, 2025 at 10:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,10 +41,11 @@ CREATE TABLE `biodata` (
 --
 
 INSERT INTO `biodata` (`NPM`, `Nama`, `Tempat_Lahir`, `Tanggal_Lahir`, `Jenis_Kelamin`, `No_Hp`) VALUES
-('06031', 'Aldiyan Setyo Nugroho', 'Temanggung', '2005-10-12', 'L', '0882490500651'),
-('06032', 'Ronald Zuni B', 'Magelang', '2005-09-13', 'L', '0922491800651'),
-('06033', 'Za Lutfi Setyaji', 'Kebumen', '2005-06-03', 'L', '0922471900651'),
-('06035', 'Ilyasa Abiyyu', 'Magelang', '2005-02-03', 'L', '0886490076550');
+('06036', 'Aulia Rahman', 'Bandung', '2005-03-15', 'L', '081234567890'),
+('06037', 'Nina Sari', 'Jakarta', '2005-07-22', 'P', '082345678901'),
+('06038', 'Fajar P. Prasetyo', 'Surabaya', '2006-01-10', 'L', '083456789012'),
+('06039', 'Diana Putri', 'Bali', '2005-11-05', 'P', '084567890123'),
+('06040', 'Rizky Aditya', 'Medan', '2005-12-25', 'L', '085678901234');
 
 --
 -- Indexes for dumped tables
