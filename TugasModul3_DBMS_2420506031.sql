@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2025 at 10:17 AM
+-- Generation Time: Mar 03, 2025 at 10:00 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,113 +18,44 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `akademik`
+-- Database: `tugasmodul4_dbms_2420506031`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dosen`
+-- Table structure for table `biodata`
 --
 
-CREATE TABLE `dosen` (
-  `DosenID` int(11) NOT NULL,
-  `Nama` varchar(100) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Telepon` varchar(15) DEFAULT NULL,
-  `Alamat` text DEFAULT NULL,
-  `Gelar` varchar(50) DEFAULT NULL,
-  `TanggalBergabung` date DEFAULT NULL
+CREATE TABLE `biodata` (
+  `NPM` char(5) NOT NULL,
+  `Nama` varchar(25) NOT NULL,
+  `Tempat_Lahir` varchar(30) NOT NULL,
+  `Tanggal_Lahir` date NOT NULL,
+  `Jenis_Kelamin` enum('L','P') NOT NULL,
+  `No_Hp` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `mahasiswa`
+-- Dumping data for table `biodata`
 --
 
-CREATE TABLE `mahasiswa` (
-  `MahasiswaID` int(11) NOT NULL,
-  `Nama` varchar(100) NOT NULL,
-  `NIM` varchar(20) NOT NULL,
-  `Email` varchar(100) NOT NULL,
-  `Telepon` varchar(15) DEFAULT NULL,
-  `Alamat` text DEFAULT NULL,
-  `TanggalLahir` date DEFAULT NULL,
-  `TanggalMasuk` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `matakuliah`
---
-
-CREATE TABLE `matakuliah` (
-  `MataKuliahID` int(11) NOT NULL,
-  `Nama` varchar(100) NOT NULL,
-  `SKS` tinyint(4) NOT NULL,
-  `DosenID` int(11) DEFAULT NULL
-) ;
+INSERT INTO `biodata` (`NPM`, `Nama`, `Tempat_Lahir`, `Tanggal_Lahir`, `Jenis_Kelamin`, `No_Hp`) VALUES
+('06036', 'Aulia Rahman', 'Bandung', '2005-03-15', 'L', '081234567890'),
+('06037', 'Nina Sari', 'Jakarta', '2005-07-22', 'P', '082345678901'),
+('06038', 'Fajar P. Prasetyo', 'Surabaya', '2006-01-10', 'L', '083456789012'),
+('06039', 'Diana Putri', 'Bali', '2005-11-05', 'P', '084567890123'),
+('06040', 'Rizky Aditya', 'Medan', '2005-12-25', 'L', '085678901234');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `dosen`
+-- Indexes for table `biodata`
 --
-ALTER TABLE `dosen`
-  ADD PRIMARY KEY (`DosenID`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- Indexes for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  ADD PRIMARY KEY (`MahasiswaID`),
-  ADD UNIQUE KEY `NIM` (`NIM`),
-  ADD UNIQUE KEY `Email` (`Email`);
-
---
--- Indexes for table `matakuliah`
---
-ALTER TABLE `matakuliah`
-  ADD PRIMARY KEY (`MataKuliahID`),
-  ADD KEY `fk_dosen` (`DosenID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `dosen`
---
-ALTER TABLE `dosen`
-  MODIFY `DosenID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `mahasiswa`
---
-ALTER TABLE `mahasiswa`
-  MODIFY `MahasiswaID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `matakuliah`
---
-ALTER TABLE `matakuliah`
-  MODIFY `MataKuliahID` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `matakuliah`
---
-ALTER TABLE `matakuliah`
-  ADD CONSTRAINT `fk_dosen` FOREIGN KEY (`DosenID`) REFERENCES `dosen` (`DosenID`),
-  ADD CONSTRAINT `matakuliah_ibfk_1` FOREIGN KEY (`DosenID`) REFERENCES `dosen` (`DosenID`);
+ALTER TABLE `biodata`
+  ADD PRIMARY KEY (`NPM`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
