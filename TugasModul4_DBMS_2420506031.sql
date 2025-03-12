@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2025 at 08:47 AM
+-- Generation Time: Mar 12, 2025 at 05:16 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -138,6 +138,35 @@ INSERT INTO `nilai` (`id_nilai`, `id_mahasiswa`, `id_mata_kuliah`, `nilai`) VALU
 (39, 20, 3, 91.00),
 (40, 20, 2, 87.00);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(100) DEFAULT NULL,
+  `category` varchar(50) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `category`, `price`) VALUES
+(1, 'Laptop A', 'Electronics', 1200.00),
+(2, 'Smartphone B', 'Electronics', 800.00),
+(3, 'Tablet C', 'Electroniccs', 500.00),
+(4, 'Shirt D', 'Clothing', 25.00),
+(5, 'Jeans E', 'Clothing', 45.00),
+(6, 'Shoes F', 'Clothing', 60.00),
+(7, 'Book G', 'Books', 15.00),
+(8, 'Notebook H', 'Books', 10.00),
+(9, 'Pen I', 'Stationery', 2.00),
+(10, 'Pencil J', 'Stationery', 1.50);
+
 --
 -- Indexes for dumped tables
 --
@@ -163,6 +192,12 @@ ALTER TABLE `nilai`
   ADD KEY `id_mata_kuliah` (`id_mata_kuliah`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -183,6 +218,12 @@ ALTER TABLE `mata_kuliah`
 --
 ALTER TABLE `nilai`
   MODIFY `id_nilai` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
